@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ListExtension.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModel\PhotoGalleryViewModel.cs" />
+    <Compile Include="View\PhotoGalleryView.xaml.cs">
+      <DependentUpon>PhotoGalleryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SinglePhotoView.xaml.cs">
+      <DependentUpon>SinglePhotoView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,13 +72,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FileController.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\PhotoGalleryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SinglePhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
