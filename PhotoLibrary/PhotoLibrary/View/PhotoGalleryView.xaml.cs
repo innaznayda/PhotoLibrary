@@ -17,5 +17,6 @@ namespace PhotoLibrary.View {
             string data = ((string[])e.Data.GetData(DataFormats.FileDrop, false))[0];
             (parent.ItemsSource as ObservableCollection<Photo>).Add(new Photo(data));
         }
+        
     }
 }

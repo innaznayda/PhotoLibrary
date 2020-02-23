@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhotoLibrary"
+        xmlns:views="clr-namespace:PhotoLibrary.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate x:Key="View1Template" DataType="{x:Type local:MainWindowViewModel}">
+            <views:PhotoGalleryView/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="View2Template" DataType="{x:Type local:MainWindowViewModel}">
+            <views:SinglePhotoView />
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-       
+        <StackPanel>
+            <Button Content="Login Page"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:PhotoGalleryView}"
+                    />
+            <Button Content="User Page"
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="{x:Type views:SinglePhotoView}"
+                    />
+        </StackPanel>
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}">
+        </ContentControl>
     </Grid>
 </Window>

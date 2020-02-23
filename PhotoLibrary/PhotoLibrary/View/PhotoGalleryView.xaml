@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"        
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=PhotoGalleryViewModel}"
 
-        Title="Photo Library" Height="550" Width="550">
+       MinHeight="550"  MinWidth="550">
 
     <Window.Resources>
+
         <DataTemplate x:Key="PhotoGalleryDataTemplate">
             <Grid>
                 <Image Width="160" Height="160" HorizontalAlignment="Stretch">
@@ -28,9 +29,30 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <Grid>
             <ListBox x:Name="PhotoGallery" ItemsSource="{Binding AllPhotos}" ItemTemplate="{DynamicResource PhotoGalleryDataTemplate}" ItemsPanel="{DynamicResource PhotoGalleryItemsPanelTemplate}"
-          AllowDrop="True" Drop="ListBox_Drop">
-                
+          AllowDrop="True" Drop="ListBox_Drop" SelectedItem="{Binding SelectedPhoto, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsGalleryMode}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseRightButtonUp" SourceName="PhotoGallery">
+                        <i:InvokeCommandAction Command="{Binding ShowSelectedPhotoCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ListBox>
+            <DockPanel LastChildFill="True">
+                <Image x:Name="Photo" Source="{Binding SelectedPhoto.ImageUri, UpdateSourceTrigger=PropertyChanged}" Stretch="Uniform" StretchDirection="Both" Visibility="{Binding IsSingleMode}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp" SourceName="Photo">
+                            <i:InvokeCommandAction Command="{Binding GoNextPhotoCommand}" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonUp" SourceName="Photo">
+                            <i:InvokeCommandAction Command="{Binding GoPreviousPhotoCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+            </DockPanel >
         </Grid>
     </ScrollViewer>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding HideSelectedPhotoCommand}" Key="Esc"/>
+        <KeyBinding Command="{Binding GoPreviousPhotoCommand}" Key="Left"/>
+        <KeyBinding Command="{Binding GoNextPhotoCommand}" Key="Right"/>
+    </Window.InputBindings>
 </Window>
