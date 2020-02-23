@@ -10,11 +10,11 @@ Libraries/packages used in solution : VirtualizingWrapPanel , Moq
 
 ### Gallery mode
 
-![alt text](https://github.com/innaznayda/PhotoLibrary/blob/master/PhotoLibrary/PhotoLibrary/GalleryMode.JPG "GalleryMode")
+![alt text](https://github.com/innaznayda/PhotoLibrary/blob/master/PhotoLibrary/PhotoLibrary/Gallery.JPG "GalleryMode")
 
 ### Single photo mode
 
-![alt text](https://github.com/innaznayda/PhotoLibrary/blob/master/PhotoLibrary/PhotoLibrary/SinglePhotoMode.JPG "SinglePhotoMode")
+![alt text](https://github.com/innaznayda/PhotoLibrary/blob/master/PhotoLibrary/PhotoLibrary/SinglePhoto.JPG "SinglePhotoMode")
 
 ## Supported functionality
 
