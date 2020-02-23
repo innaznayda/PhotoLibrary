@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PhotoLibrary.ViewModel {
@@ -23,7 +24,7 @@ namespace PhotoLibrary.ViewModel {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsSingleMode)));
             }
         }
-        public bool IsGalleryMode=> !IsSingleMode;
+        public bool IsGalleryMode => !IsSingleMode;
 
         public PhotoGalleryViewModel(string location) {
             CurrentLocation = location;
@@ -44,7 +45,7 @@ namespace PhotoLibrary.ViewModel {
 
         private void GoNext(object obj) {
             int index = AllPhotos.IndexOf(SelectedPhoto) + 1;
-            if (index > AllPhotos.Count-1) {
+            if (index > AllPhotos.Count - 1) {
                 return;
             }
             SelectedPhoto = AllPhotos[index];
@@ -59,16 +60,17 @@ namespace PhotoLibrary.ViewModel {
 
         private void ShowPhoto(object obj) {
             IsSingleMode = true;
+
         }
         private void HidePhoto(object obj) {
             SelectedPhoto = null;
             IsSingleMode = false;
-            
+
         }
 
 
 
-        public ObservableCollection<Photo> AllPhotos {
+        public AsyncObservableCollection<Photo> AllPhotos {
             get {
                 return allPhotos;
             }
@@ -77,7 +79,7 @@ namespace PhotoLibrary.ViewModel {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AllPhotos)));
             }
         }
-        private ObservableCollection<Photo> allPhotos;
+        private AsyncObservableCollection<Photo> allPhotos;
 
 
         private Photo selectedPhoto;
@@ -101,7 +103,7 @@ namespace PhotoLibrary.ViewModel {
             get { return currentViewModel; }
             set { currentViewModel = value; RaisePropertyChanged(); }
         }
-        
+
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "") {
             if (PropertyChanged != null) {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));

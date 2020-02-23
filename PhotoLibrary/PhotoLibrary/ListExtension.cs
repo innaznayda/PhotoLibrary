@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PhotoLibrary {
     public static class ListExtensions {
-        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> coll) {
-            var c = new ObservableCollection<T>();
+        public static AsyncObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> coll) {
+            var c = new AsyncObservableCollection<T>();
             foreach (var e in coll)
                 c.Add(e);
             return c;

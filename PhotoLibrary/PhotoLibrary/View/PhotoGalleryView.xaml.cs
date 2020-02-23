@@ -1,7 +1,8 @@
 ﻿using PhotoLibrary.Models;
-using System.Collections.ObjectModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace PhotoLibrary.View {
     /// <summary>
@@ -10,13 +11,20 @@ namespace PhotoLibrary.View {
     public partial class PhotoGalleryView : Window {
         public PhotoGalleryView() {
             InitializeComponent();
+            Image right = new Image();
+            right.Source = new BitmapImage(new Uri(@"..\Icons\right.ico", UriKind.Relative));
+            Right.Content = right;
+            Image left = new Image();
+            left.Source = new BitmapImage(new Uri(@"..\Icons\left.ico", UriKind.Relative));
+            Left.Content = left;
         }
 
-        private void ListBox_Drop(object sender, DragEventArgs e) {
+        private void PhotoGallery_Drop(object sender, DragEventArgs e) {
             ListBox parent = (ListBox)sender;
-            string data = ((string[])e.Data.GetData(DataFormats.FileDrop, false))[0];
-            (parent.ItemsSource as ObservableCollection<Photo>).Add(new Photo(data));
+            var data = ((string[])e.Data.GetData(DataFormats.FileDrop, false));
+            foreach (string file in data) {
+                (parent.ItemsSource as AsyncObservableCollection<Photo>).Add(new Photo(file));
+            }
         }
-        
     }
 }
