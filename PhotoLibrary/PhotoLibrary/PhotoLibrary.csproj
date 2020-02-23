@@ -122,5 +122,10 @@
     <Resource Include="GalleryMode.JPG" />
     <Resource Include="SinglePhotoMode.JPG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\icons-header.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,6 @@
 ﻿using PhotoLibrary.Models;
 using PhotoLibrary.Helpers;
 using System;
-using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -22,6 +20,7 @@ namespace PhotoLibrary.View {
             Image left = new Image();
             left.Source = new BitmapImage(new Uri(@"..\Icons\left.ico", UriKind.Relative));
             Left.Content = left;
+            
         }
 
         private void PhotoGallery_Drop(object sender, DragEventArgs e) {
