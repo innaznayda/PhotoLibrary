@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace PhotoLibrary {
-    static class FileHelper {
-        public static List<Photo> GetImagesInFolder(string folderPath) {
+namespace PhotoLibrary.Helpers {
+    public class FileHelper  : IFileHelper {
+        public List<Photo> GetImagesInFolder(string folderPath) {
             var result = new List<Photo>();
 
             if (!Directory.Exists(folderPath))

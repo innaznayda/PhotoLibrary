@@ -1,9 +1,8 @@
 ﻿using PhotoLibrary.Models;
+using PhotoLibrary.Helpers;
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PhotoLibrary.ViewModel {
@@ -14,6 +13,7 @@ namespace PhotoLibrary.ViewModel {
         public ICommand GoNextPhotoCommand { get; set; }
         public ICommand GoPreviousPhotoCommand { get; set; }
         private string CurrentLocation;
+        private IFileHelper FileHelper;
         private bool isSingleMode;
         public bool IsSingleMode {
             get {
@@ -26,13 +26,15 @@ namespace PhotoLibrary.ViewModel {
         }
         public bool IsGalleryMode => !IsSingleMode;
 
-        public PhotoGalleryViewModel(string location) {
+        public PhotoGalleryViewModel(IFileHelper fileHelper, string location) {
             CurrentLocation = location;
-            LoadPhotos();
+            FileHelper = fileHelper;
             ShowSelectedPhotoCommand = new CustomCommand(ShowPhoto, CanShowPhoto);
             HideSelectedPhotoCommand = new CustomCommand(HidePhoto, CanShowPhoto);
             GoNextPhotoCommand = new CustomCommand(GoNext, CanShowPhoto);
             GoPreviousPhotoCommand = new CustomCommand(GoPrevious, CanShowPhoto);
+            LoadPhotos();
+            
         }
 
         private void GoPrevious(object obj) {
