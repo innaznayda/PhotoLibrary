@@ -68,8 +68,6 @@ namespace PhotoLibrary.ViewModel {
 
         }
 
-
-
         public AsyncObservableCollection<Photo> AllPhotos {
             get {
                 return allPhotos;
@@ -80,7 +78,6 @@ namespace PhotoLibrary.ViewModel {
             }
         }
         private AsyncObservableCollection<Photo> allPhotos;
-
 
         private Photo selectedPhoto;
         public Photo SelectedPhoto {
@@ -95,13 +92,6 @@ namespace PhotoLibrary.ViewModel {
 
         private void LoadPhotos() {
             AllPhotos = FileHelper.GetImagesInFolder(CurrentLocation).ToObservableCollection();
-        }
-
-        private object currentViewModel;
-
-        public object CurrentViewModel {
-            get { return currentViewModel; }
-            set { currentViewModel = value; RaisePropertyChanged(); }
         }
 
         private void RaisePropertyChanged([CallerMemberName] String propertyName = "") {

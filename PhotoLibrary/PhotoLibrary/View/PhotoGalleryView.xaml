@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"         
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource mainViewModelLocator}, Path=PhotoGalleryViewModel}"
-       MinHeight="550"  MinWidth="550">
+       MinHeight="550"  MinWidth="550" Title="Photo Library">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -21,7 +22,7 @@
         </DataTemplate>
 
         <ItemsPanelTemplate x:Key="PhotoGalleryItemsPanelTemplate">
-            <WrapPanel ScrollViewer.CanContentScroll="False"/>
+            <vwp:VirtualizingWrapPanel ScrollViewer.CanContentScroll="False"/>
         </ItemsPanelTemplate>
     </Window.Resources>
 
