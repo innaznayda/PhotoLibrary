@@ -2,7 +2,7 @@
 
 Small application for image browsing.
 
-Environmet to build : Windows 10, Visual Studio 2017
+Environment to build : Windows 10, Visual Studio 2017, .NET Framework 4.6.2
 
 Libraries/packages used in solution : VirtualizingWrapPanel , Moq 
 
